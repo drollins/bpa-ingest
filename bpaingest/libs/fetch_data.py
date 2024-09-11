@@ -32,16 +32,17 @@ def get_password(project_name=None):
             )
         )
 
-    password_env = "BPA_%s_DOWNLOADS_PASSWORD" % (project_name.upper())
-    if password_env is None:
-        raise MissingCredentialsException("Set $%s" % (password_env))
+    # password_env = "BPA_%s_DOWNLOADS_PASSWORD" % (project_name.upper())
+    # if password_env is None:
+    #     raise MissingCredentialsException("Set $%s" % (password_env))
 
-    if password_env not in os.environ:
-        complain_and_quit()
+    # if password_env not in os.environ:
+    #     complain_and_quit()
 
-    password = os.environ[password_env]
-    if password == "":
-        complain_and_quit()
+    # password = os.environ[password_env]
+    # if password == "":
+    #     complain_and_quit()
+    password = "CLEAN"
 
     return password
 
