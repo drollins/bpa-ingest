@@ -67,7 +67,7 @@ class AustralianMicrobiomeSampleContextualSQLite(AustralianMicrobiomeSampleConte
     def fetch_data(self, con):
         self._logger.info("fetch_data")
         self._logger.info("self.db_table_name: %s", self.db_table_name)
-        self._logger.info("self.con: %s", self.con)
+        self._logger.info("self.con: %s", con)
 
         return pandas.read_sql_query(f"SELECT * FROM {self.db_table_name}", con)
 
