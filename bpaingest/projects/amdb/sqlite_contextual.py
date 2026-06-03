@@ -20,14 +20,27 @@ class AustralianMicrobiomeSampleContextualSQLite(AustralianMicrobiomeSampleConte
 
     def initialise_source_path(self, source_path):
         data_frames = self.get_sqlite_data(source_path)
+        self._logger.info("data_frames: %s", data_frames)
+
         fo = tempfile.NamedTemporaryFile(suffix=".xlsx")
+        self._logger.info("fo: %s", fo)
+
         self.dataframe_to_excel_file(data_frames, fo.name)
+
         super().initialise_source_path(fo.name)
         fo.close()
 
     def dataframe_to_excel_file(self, df, fname):
+        self._logger.info("dataframe_to_excel_file: %s", df)
+        self._logger.info("dataframe_to_excel_file: %s", fname)
+
         writer = pandas.ExcelWriter(fname)
+        self._logger.info("dataframe_to_excel_file: %s", writer)
+
+        self._logger.info("df.to_excel")
         df.to_excel(writer, sheet_name=self.sheet_name)
+
+        self._logger.info("writer.close")
         writer.close()
         self._logger.info("Excel file written.")
 
@@ -52,6 +65,10 @@ class AustralianMicrobiomeSampleContextualSQLite(AustralianMicrobiomeSampleConte
         self._logger.info("SQLite version: %s" % data)
 
     def fetch_data(self, con):
+        self._logger.info("fetch_data")
+        self._logger.info("self.db_table_name: %s", self.db_table_name)
+        self._logger.info("self.con: %s", self.con)
+
         return pandas.read_sql_query(f"SELECT * FROM {self.db_table_name}", con)
 
 
