@@ -8,7 +8,7 @@ ILLUMINA_SHORTREAD_PATTERN = r"""
     (?P<library_id>\d{4,6})_
     FISH_
     (?P<facility_id>(AGRF|UNSW|BRF))_
-    (?P<flow_cell_id>\w{9,10})_
+    (?P<flow_cell_id>\w{9,10}(-\w{3})?)_
     (?P<index>[G|A|T|C|-]*)_
     ((?P<runsamplenum>S\d*)_)?
     ((?P<lane>L\d{3})_)?
@@ -76,7 +76,7 @@ ONT_PROMETHION_PATTERN = r"""
     (?P<library_id>\d{4,6})_
     FISH_
     (?P<facility_id>(BRF))_
-    (?P<flow_cell_id>P[AB][ABCDEFGKMOQW]\d{5})_
+    (?P<flow_cell_id>P[AB][ABCDEFGIKMOQW]\d{5})_
     (Run(?P<run_number>\d+)_)?
     ONTPromethION_
     (?P<archive_type>\w+)
@@ -89,7 +89,7 @@ ont_promethion_re = re.compile(ONT_PROMETHION_PATTERN, re.VERBOSE)
 ONT_PROMETHION_COMMON_PATTERN = r"""
     FISH_
     (?P<facility_id>(BRF))_
-    (?P<flow_cell_id>P[AB][ABCDEFGKMOQW]\d{5})_
+    (?P<flow_cell_id>P[AB][ABCDEFGIKMOQW]\d{5})_
     (Run(?P<run_number>\d+)_)?
     (ONTPromethION_)
     (?P<archive_type>\w+)
@@ -100,13 +100,13 @@ ont_promethion_common_re = re.compile(ONT_PROMETHION_COMMON_PATTERN, re.VERBOSE)
 ILLUMINA_HIC_PATTERN = r"""
     (?P<library_id>\d{4,6})_
     FISH_
-    (?P<facility_id>(BRF))_
+    (?P<facility_id>(BRF|AGRF))_
     (?P<flowcell_id>\w{5,10})_
     ((?P<index>[G|A|T|C|-]*)_)?
-    (?P<runsamplenum>S\d*)_
+    ((?P<runsamplenum>S\d*)_)?
     ((?P<lane>L\d{3})_)?
     (?P<read>[R|I][1|2])
-    _001
+    (_001)?
     \.fastq\.gz$
 """
 illumina_hic_re = re.compile(ILLUMINA_HIC_PATTERN, re.VERBOSE)

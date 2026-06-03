@@ -169,6 +169,13 @@ ORGANIZATIONS = [
         "groups": [{"capacity": "public", "name": "threatened-species"}],
     },
     {
+        "name": "biocommons-access-bundle-threatened-species-initiative",
+        "title": "BioCommons Access Threatened Species Bundle Members",
+        "display_name": "BioCommons Access Threatened Species Bundle Members",
+        "image_url": "https://data.bioplatforms.com/Threatened-Species-Initiative-Logo-150dpi-RGB.png",
+        "groups": [{"capacity": "public", "name": "tsi-consortium-members"}],
+    },
+    {
         "name": "ausarg-consortium-members",
         "title": "Australian Amphibian and Reptile Genomics Project Members",
         "display_name": "Australian Amphibian and Reptile Genomics Project Members",
@@ -307,5 +314,33 @@ ORGANIZATIONS = [
         "display_name": "Animal Disease Genomics Members",
         "image_url": "https://data.bioplatforms.com/Animal-Disease-Genomics-initiative-RFP.webp",
         "groups": [{"capacity": "public", "name": "animal-disease"}],
+    },
+    {
+        "name": "aus-venom",
+        "title": "Australian Venom Innovation and Discovery Initiative",
+        "display_name": "Australian Venom Innovation and Discovery Initiative",
+        "image_url": "https://data.bioplatforms.com/AVID-Logo.webp",
+        "groups": [{"capacity": "public", "name": BPA_ORGANIZATION_ID}],
+    },
+    {
+        "name": "aus-venom-consortium-members",
+        "title": "Australian Venom Innovation and Discovery Members",
+        "display_name": "Australian Venom Innovation and Discovery Members",
+        "image_url": "https://data.bioplatforms.com/AVID-Logo.webp",
+        "groups": [{"capacity": "public", "name": "aus-venom"}],
+    },
+    {
+        "name": "environmental-dna",
+        "title": "Environmental DNA",
+        "display_name": "Environmental DNA",
+        "image_url": "https://data.bioplatforms.com/edna.webp",
+        "groups": [{"capacity": "public", "name": BPA_ORGANIZATION_ID}],
+    },
+    {
+        "name": "environmental-dna-consortium-members",
+        "title": "Environmental DNA Members",
+        "display_name": "Environmental DNA Members",
+        "image_url": "https://data.bioplatforms.com/edna.webp",
+        "groups": [{"capacity": "public", "name": "environmental-dna"}],
     },
 ]

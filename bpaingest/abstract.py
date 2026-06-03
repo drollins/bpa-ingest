@@ -30,10 +30,12 @@ class BaseMetadata:
        PP_BRF_PAW59370_ONTPromethION_pod5.tar
        357464_TSI_AGRF_DA061164.subreads.bam
        57368_TSI_CAGRF20114490_DA060254_subreads.bam
+    Addiional for Pacbio-hifi Amplifi
+       TSI_BRF_m84118_260220_051901_s1.hifi_reads.bc2091.amplifi_multiplexed.bam
     """
 
     OPTIONAL_PATTERN = r"""
-    (.*pod5\.tar$|.*subreads\.bam$)
+    (.*pod5\.tar$|.*subreads\.bam$|.*amplifi_multiplexed\.bam$)
             """
 
     def method_exists(self, method_name):
@@ -794,6 +796,8 @@ class BaseLibraryContextual:
         fld('host_organ', 'host_organ', optional=True),
         fld('host_symptom', 'host_symptom', optional=True),
         fld('host_status', 'host_status', optional=True),
+        fld('nucleic_acid_ng', 'nucleic_acid_ng', optional=True),
+        fld('extraction_protocol_doi', 'extraction_protocol_doi', optional=True),
 
     ]
 
@@ -838,7 +842,7 @@ class BaseLibraryContextual:
             return library_metadata
         if key_value in library_metadata:
             raise Exception(
-                "duplicate {}: {}".format(self.metadata_unique_identifier, key_value)
+                "duplicate {}: {} in {}".format(self.metadata_unique_identifier, key_value, metadata_filename)
             )
         library_metadata[key_value] = row_meta = {}
         library_metadata[key_value][

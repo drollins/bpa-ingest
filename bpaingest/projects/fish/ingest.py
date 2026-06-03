@@ -61,7 +61,7 @@ class FishBaseMetadata(BaseMetadata):
     title_mapping = [
         {"key": "common_name", "separator": ", "},
         {"key": "data_context", "separator": ", "},
-        {"key": "data_type", "separator": ", "},
+        {"key": "library_type", "separator": ", "},
         {"key": "tissue"},
     ]
     def _set_metadata_vars(self, filename):
@@ -138,7 +138,9 @@ class FishBaseMetadata(BaseMetadata):
                     obj["id"] = obj["name"]
                 ingest_utils.permissions_organization_member(self._logger, obj)
                 ingest_utils.apply_access_control(self._logger, self, obj)
-                obj["tags"] = [{"name": "{:.100}".format(t)} for t in self.tag_names]
+                # add the library_type from the metadata as a tag
+                tag_list = self.tag_names + [obj["library_type"],]
+                obj["tags"] = [{"name": "{:.100}".format(t)} for t in tag_list]
                 packages.append(obj)
         return packages
 
@@ -370,7 +372,7 @@ class FishPacbioHifiMetadata(FishBaseMetadata):
             fld('scientific_name', 'scientific_name', optional=True),
             fld('project_lead', 'project_lead', optional=True),
             fld('project_collaborators', 'project_collaborators', optional=True),
-
+            fld("common_name", "common_name", optional=True),
         ],
         "options": {
             "sheet_name": "library_metadata",

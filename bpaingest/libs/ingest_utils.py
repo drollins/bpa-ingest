@@ -616,6 +616,7 @@ def apply_access_control(logger, metadata, obj):
                 (info.filename.split(os.path.sep))[-1], info.lineno
             )
         )
+        logger.error(str(obj))
 
         obj["access_control_mode"] = "closed"
         obj["access_control_date"] = ""

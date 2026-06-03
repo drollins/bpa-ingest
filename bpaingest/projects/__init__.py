@@ -14,8 +14,16 @@ from .amdb.ingest import (
     MarineMicrobesAmpliconsControlMetadata,
     MarineMicrobesMetagenomicsMetadata,
     MarineMicrobesMetatranscriptomeMetadata,
+    EDNAAmpliconsMetadata,
+    EDNAAmpliconsControlMetadata,
 )
-from .animal_disease.ingest import AnimalDiseaseONTPromethionMetadata
+from .animal_disease.ingest import (
+    AnimalDiseaseIlluminaShortreadMetadata,
+    AnimalDiseaseIlluminaHiCMetadata,
+    AnimalDiseaseONTPromethionMetadata,
+    AnimalDiseasePacbioHifiMetadata,
+    AnimalDiseaseIlluminaShortreadMetadata,
+)
 
 from .ausarg.ingest import (
     AusargIlluminaFastqMetadata,
@@ -108,7 +116,11 @@ from .plant_pathogen.ingest import (
     PlantPathogenONTPromethionMetadata,
 )
 
-from .cipps.ingest import CIPPSIlluminaShortreadMetadata, CIPPSPacbioHifiMetadata
+from .cipps.ingest import (
+    CIPPSIlluminaShortreadMetadata,
+    CIPPSPacbioHifiMetadata,
+    CIPPSHiCMetadata,
+)
 
 from .plant_protein_atlas.ingest import (
     PlantProteinAtlasPhenoCTXrayRawMetadata,
@@ -128,6 +140,7 @@ from .grasslands.ingest import (
     AGHiCMetadata,
     AGPacbioHifiMetadata,
     AGGenomicsDDRADMetadata,
+    AGONTPromethionMetadata,
 )
 
 from .collaborations.ingest import (
@@ -283,6 +296,7 @@ class ProjectInfo:
         "cipps": [
             CIPPSIlluminaShortreadMetadata,
             CIPPSPacbioHifiMetadata,
+            CIPPSHiCMetadata,
         ],
         "ppa": [
             PlantProteinAtlasPhenoCTXrayRawMetadata,
@@ -301,6 +315,7 @@ class ProjectInfo:
             AGHiCMetadata,
             AGPacbioHifiMetadata,
             AGGenomicsDDRADMetadata,
+            AGONTPromethionMetadata,
         ],
         "collaborations": [
             CollaborationsMetagenomicsNovaseqMetadata,
@@ -336,8 +351,14 @@ class ProjectInfo:
             FishHiCMetadata,
         ],
         "ad": [
+            AnimalDiseaseIlluminaShortreadMetadata,
+            AnimalDiseaseIlluminaHiCMetadata,
             AnimalDiseaseONTPromethionMetadata,
-            FishHiCMetadata,
+            AnimalDiseasePacbioHifiMetadata,
+        ],
+        "edna": [
+            EDNAAmpliconsMetadata,
+            EDNAAmpliconsControlMetadata,
         ],
     }
 

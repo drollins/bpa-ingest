@@ -188,6 +188,7 @@ cipps()
 {
   apply cipps-illumina-shortread $*
   apply cipps-pacbio-hifi $*
+  apply cipps-hi-c $*
 }
 
 ppa()
@@ -202,7 +203,6 @@ ppa()
   apply ppa-proteomics $*
   apply ppa-proteomics-analysed $*
   apply ppa-proteomics-database $*
-  apply ppa-nutritional-analysis $*
 }
 
 grasslands() {
@@ -210,12 +210,14 @@ grasslands() {
   apply grasslands-pacbio-hifi $*
   apply grasslands-genomics-ddrad $*
   apply grasslands-illumina-shortread $*
+  apply grasslands-ont-promethion $*
 }
 
 collaborations()
 {
   apply collaborations-metagenomics-novaseq $*
   apply collaborations-ont-promethion $*
+  apply collaborations-pacbio-hifi $*
 
 }
 
@@ -235,19 +237,42 @@ workshop()
 avian()
 {
     apply avian-pacbio-hifi $*
+    apply avian-hi-c $*
+    apply avian-illumina-shortread $*
+    apply avian-ont-promethion
 
 }
 
 forest()
 {
+    apply forest-illumina-shortread $*
     apply forest-pacbio-hifi $*
 
 }
 
 ad()
 {
-  apply ad-ont-promethion $*
+    apply ad-ont-promethion $*
+    # not yet apply ad-illumina-shortread $*
+    apply ad-hi-c $*
+    apply ad-pacbio-hifi $*
+    apply ad-illumina-shortread $*
+
 }
+edna()
+{
+    apply edna-genomics-amplicons $*
+    apply edna-genomics-amplicons-control $*
+}
+fish()
+{
+    apply fish-illumina-shortread $*
+    apply fish-pacbio-hifi $*
+    apply fish-ont-promethion $*
+    apply fish-hi-c $*
+}
+
+
 run() {
   apply $*
 }
@@ -266,6 +291,7 @@ all()
   wheat $*
   ausarg $*
   fungi $*
+  fish $*
   pp $*
   cipps $*
   ppa $*
@@ -276,6 +302,7 @@ all()
   avian $*
   forest $*
   ad $*
+  edna $*
 }
 
 action="$1"

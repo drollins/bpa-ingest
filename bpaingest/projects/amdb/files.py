@@ -8,10 +8,10 @@ logger = make_logger(__name__)
 
 base_amplicon_control_tech_vendor_filename_re = re.compile(
     r"""
-    ^(?P<control_type>Arc_mock_community|Arch_mock_community|Bac_mock_community|Fungal_mock_community|Fungal-mock-community|Fungal__mock_Community|Soil_DNA|Soil-DNA||STAN|NEG1|NEG2|Neg|Neg1|Neg2|NEG_1|NEG_2|Undetermined)_
+    ^(?P<control_type>Arc_mock_community|Arch_mock_community|Bac_mock_community|Fungal_mock_community|Fungal-mock-community|Fungal__mock_Community|Soil_DNA|Soil-DNA|STAN|NEG|NEG1|NEG2|Neg|Neg1|Neg2|NEG_1|NEG_2|Undetermined)_
     (?P<amplicon>ITS|16S|18S|A16S)_
     (?P<vendor>AGRF|UNSW)_
-    (?P<index>[G|A|T|C|-]{8,12}(_[G|A|T|C|-]{8})?)_
+    (?P<index>[G|A|T|C|-]{8,17}(_[G|A|T|C|-]{8})?)_
     (?P<flow_id>[A-Z0-9]{5})_
     .*\.fastq\.gz$
 """,
@@ -21,7 +21,7 @@ base_amplicon_control_tech_vendor_filename_re = re.compile(
 
 base_amplicon_control_tech_vendor_flow_filename_re = re.compile(
     r"""
-    ^(?P<control_type>Arc_mock_community|Arch_mock_community|Bac_mock_community|Fungal_mock_community|Fungal-mock-community|Fungal__mock_Community|Soil_DNA|Soil-DNA||STAN|NEG1|NEG2|Neg|Neg1|Neg2|NEG_1|NEG_2|Undetermined)_
+    ^(?P<control_type>Arc_mock_community|Arch_mock_community|Bac_mock_community|Fungal_mock_community|Fungal-mock-community|Fungal__mock_Community|Soil_DNA|Soil-DNA|STAN|NEG|NEG1|NEG2|Neg|Neg1|Neg2|NEG_1|NEG_2|Undetermined)_
     (?P<amplicon>ITS|16S|18S|A16S)_
     (?P<vendor>AGRF|UNSW)_
     (?P<flow_id>[A-Z0-9]{5})_
@@ -345,7 +345,7 @@ amd_metagenomics_novaseq_re = re.compile(
     (?P<index>[G|A|T|C|-]*)_
     (?P<runsamplenum>S\d+)_
     (?P<lane>L\d{3})_
-    (?P<read>R[1|2])_001\.fastq\.gz
+    (?P<read>[R|I][1|2])_001\.fastq\.gz
 """,
     re.VERBOSE,
 )
@@ -360,7 +360,7 @@ amd_metagenomics_novaseq_control_re = re.compile(
     (?P<index>[G|A|T|C|-]*)_
     (?P<runsamplenum>S\d+)_
     (?P<lane>L\d{3})_
-    (?P<read>R[1|2])_001\.fastq\.gz
+    (?P<read>[R|I][1|2])_001\.fastq\.gz
 """,
     re.VERBOSE,
 )
@@ -383,7 +383,7 @@ amd_amplicon_filename_v2_re = re.compile(
     r"""
     (?P<id>\d{4,6})_
     (?P<amplicon>16S|18S|ITS|A16?)_
-    (?P<flow_id>\w{5})_
+    (?P<flow_id>\w{5,9})_
     (?P<index>[G|A|T|C|-]*|UNKNOWN)_
     (?P<runsamplenum>\S\d*|UNKNOWN)_
     (?P<lane>L\d{3})_
@@ -408,10 +408,37 @@ amd_amplicon_control_filename_re = re.compile(
 )
 amd_amplicon_control_filename_v2_re = re.compile(
     r"""
-    ^(?P<control_type>Arc_mock_community|Bac_mock_community|Fungal_mock_community|Soil_DNA|STAN|.*Mock|.*MOCK|No_Template_Control|Zymo_DNA_Control|blank|NEG)_
+    ^(?P<control_type>Arc_mock_community|Bac_mock_community|Fungal_mock_community|Soil_DNA|STAN|.*Mock|.*MOCK|No_Template_Control|Zymo_DNA_Control|blank|NEG|ATCC\d+|NTC|Soil)(_|-)
     (?P<extra_descriptor>.*_?)
     (?P<amplicon>16S|18S|ITS|A16?)_
-    (?P<flow_id>\w{5})_
+    (?P<flow_id>\w{5,9})_
+    (?P<index>[G|A|T|C|-]*)_
+    (?P<runsamplenum>\S\d*)_
+    (?P<lane>L\d{3})_
+    (?P<read>[R|I][1|2])_001\.fastq\.gz
+""",
+    re.VERBOSE,
+)
+
+edna_amplicon_filename_re = re.compile(
+    r"""
+    (?P<id>\d{4,6})_
+    (?P<amplicon>D16S|LCOI|F16S|MV1|MFE2|MFU|MFUE2?)_
+    (?P<flow_id>\w{5,9})_
+    (?P<index>[G|A|T|C|-]*|UNKNOWN)_
+    (?P<runsamplenum>\S\d*|UNKNOWN)_
+    (?P<lane>L\d{3})_
+    (?P<read>[R|I][1|2])_001\.fastq\.gz
+""",
+    re.VERBOSE,
+)
+
+edna_amplicon_control_filename_re = re.compile(
+    r"""
+    ^(?P<control_type>Arc_mock_community|Bac_mock_community|Fungal_mock_community|Soil_DNA|STAN|.*Mock|.*MOCK|No_Template_Control|Zymo_DNA_Control|blank|NEG|ATCC\d+|NTC|Soil)(_|-)
+    (?P<extra_descriptor>.*_?)
+    (?P<amplicon>D16S|LCOI|F16S|MV1|MFE2|MFU|MFUE2?)_
+    (?P<flow_id>\w{5,9})_
     (?P<index>[G|A|T|C|-]*)_
     (?P<runsamplenum>\S\d*)_
     (?P<lane>L\d{3})_
